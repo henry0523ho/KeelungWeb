@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+
 
     <!--JQuery-->
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
@@ -15,15 +15,44 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
+    <title></title>
     <script src="script/regionScript.js"></script>
+
+    <link rel="stylesheet" href="css/regionStyle.css">
+
 </head>
 
 <body>
-    <h1 id="websiteTitle">標題</h1>
-    <h2 id="stationName"></h2>
-    <button type="button" class="btn btn-primary" id="lastStation">上一站</button>
-    <button type="button" class="btn btn-primary" id="nextStation">下一站</button>
-    <div id="stationDiv"></div>
+    <header>
+        <div id="websiteTitle"></div>
+        <div id="backHomePage">
+            回首頁
+        </div>
+    </header>
+    <aside id="lastStation">
+        <svg width="100%" height="100%" fill="currentColor" class="asideIcon" viewBox="0 0 16 16">
+            <path d="m3.86 8.753 5.482 4.796c.646.566 1.658.106 1.658-.753V3.204a1 1 0 0 0-1.659-.753l-5.48 4.796a1 1 0 0 0 0 1.506z"/>
+        </svg>
+    </aside>
+    <aside id="nextStation">
+        <svg width="100%" height="100%" fill="currentColor" class="asideIcon" viewBox="0 0 16 16">
+            <path d="m12.14 8.753-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/>
+        </svg>
+    </aside>
+    <main>
+        <div id="stationName"></div>
+        <div id="imgDiv">
+            <img src="src/photo.png" height="100%" id="stationImg">
+        </div>
+        <div id="stationInfo">德芳說過，毀於虛榮心的女性，比毀於愛情的還要多。希望各位能用心體會這段話。和平島的出現，重寫了人生的意義。和平島勢必能夠左右未來。普卡利西爾曾提出，中斷了的友誼，應當說本來就沒有友誼。這段話看似複雜，其中的邏輯思路卻清晰可見。在這種困難的抉擇下，本人思來想去，寢食難安。面對如此難題，我們必須設想周全。本人也是經過了深思熟慮，在每個日日夜夜思考這個問題。和平島對我來說，已經成為了我生活的一部分。這種事實對本人來說意義重大，相信對這個世界也是有一定意義的。其實，若思緒夠清晰，那麼和平島也就不那麼複雜了。蕭伯納告訴我們，知識不存在的地方，愚蠢便自命為科學。這句話讓我們得到了一個全新的觀點去思考這個問題。和平島對我來說有著舉足輕重的地位，必須要嚴肅認真的看待。總結來說，謹慎地來說，我們必須考慮到所有可能。</div>
+        <section id="lastPath">上一站</section>
+        <section id="nextPath">下一站</section>
+
+    </main>
+    <nav>
+        <div id="stationDiv"></div>
+    </nav>
+
 
 
 

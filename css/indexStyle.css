@@ -1,0 +1,55 @@
+body {
+    background-color: aqua;
+    overflow: hidden;
+}
+
+header {
+    text-align: left;
+}
+
+#websiteTitle {
+    background-color: pink;
+    font-size: 5em;
+    display: inline-block;
+}
+
+.btnDiv {
+    background-color: green;
+    display: inline-block;
+    width: 15%;
+    margin: 5px;
+    padding: 5px;
+}
+
+.btnDiv h1 {
+    text-align: center;
+}
+
+.btnDiv hr {
+    border-top: 5px solid black;
+}
+
+nav {
+    position: absolute;
+    bottom: 0px;
+    text-align: left;
+    width: 100%;
+}
+
+@media screen and (max-width: 600px) {
+    header {
+        text-align: center;
+    }
+    nav {
+        position: static;
+        text-align: center;
+    }
+    .btnDiv {
+        width: 40%;
+        margin: 4%;
+    }
+    .btnDiv h1 {
+        text-align: center;
+        display: block;
+    }
+}

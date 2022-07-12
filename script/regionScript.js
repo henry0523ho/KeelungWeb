@@ -11,18 +11,25 @@ $(document).ready(function() {
 
     $('#websiteTitle').text(jsonData.title);
     $("#lastStation").click(function() {
+        console.log("last");
         updateStation(station - 1);
     });
     $("#nextStation").click(function() {
+        console.log("next");
         updateStation(station + 1);
+    });
+    $("#backHomePage").click(function() {
+        window.location.href = "index.html";
     })
 });
 
 function generateStationBtn() {
+    console.log("Generating station");
     for (let i = 0; i < jsonData.station.length; ++i) {
-        let newBtn = $('<button type="button" class="btn btn-primary"></button>').text(jsonData.station[i].name);
+        let newBtn = $('<button type="button" class="btn btn-primary stationBtn"></button>').text(jsonData.station[i].name);
         newBtn.attr("id", ("stationBtn" + i));
         newBtn.click(function() {
+            console.log(("click" + i));
             updateStation(i);
         });
         $('#stationDiv').append(newBtn);
@@ -46,5 +53,7 @@ function clearStation() {
 }
 
 function updateStationName() {
-    $('#stationName').text(jsonData.station[station].name);
+    let newH2 = $('<h2></h2>').text(jsonData.station[station].name);
+    $('#stationName').empty();
+    $('#stationName').append(newH2);
 }
