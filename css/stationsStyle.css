@@ -1,0 +1,220 @@
+body {
+    overflow: auto;
+}
+
+header {
+    width: 100vw;
+    height: 10vh;
+    /* background-color: green; */
+    display: block;
+    position: absolute;
+    padding: 2vh 2vw 2vh 2vw;
+    z-index: 100;
+}
+
+main {
+    height: 100vh;
+    position: relative;
+    top: 0vh;
+    left: 0vw;
+    /* background: linear-gradient(to right, rgba(255, 0, 0, 1), rgba(0, 255, 0, 1)); */
+    /* display: flex; */
+}
+
+aside {
+    height: 10vh;
+    width: 15vw;
+    position: absolute;
+    bottom: 8vh;
+}
+
+nav {
+    display: block;
+    position: absolute;
+    bottom: 0vh;
+    right: 0vw;
+    width: 100vw;
+    height: 10vh;
+    /* background-color: pink; */
+}
+
+#websiteTitle {
+    margin: 0 auto;
+    z-index: 10;
+    display: inline-block;
+    background-color: pink;
+}
+
+#stationUl {
+    list-style: none;
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+#prevStation {
+    left: 5vw;
+}
+
+#nextStation {
+    right: 5vw;
+}
+
+aside h1 {
+    background-color: green;
+    border: 1vh solid darkgreen;
+    border-radius: 1vh;
+    font-size: 5vh;
+    text-align: center;
+}
+
+#backHomePage {
+    position: fixed;
+    right: 2vw;
+    top: 2vh;
+    height: 8vh;
+    padding: 1vh 1vw 1vh 1vw;
+    z-index: 100;
+}
+
+#backHomePage h1 {
+    margin: 0 auto;
+    z-index: 10;
+    display: inline-block;
+    background-color: pink;
+    padding: 1vh 1vw 1vh 1vh;
+    border-radius: 1vh;
+    border: 1vh solid red;
+    font-size: 2vh;
+}
+
+.stBtn {
+    padding: 2vh 1vw 2vh 1vw;
+}
+
+.stBtn h1 {
+    margin: 0 auto;
+    background-color: aqua;
+    border: 0.5vh solid blue;
+    border-radius: 0.5vh;
+    font-size: 3vh;
+}
+
+.stSection {
+    margin: 5vh 5vw 5vh 5vw;
+    width: 90vw;
+    height: 90vh;
+    position: absolute;
+}
+
+.stName {
+    margin: 0 auto;
+    padding: 1vh 0 1vh 0;
+    text-align: center;
+    height: 10%;
+    background-color: green;
+    font-size: 7vh;
+}
+
+.stImage {
+    display: block;
+    margin: 0 auto;
+    height: 50%;
+    max-width: 100%;
+    max-width: 50%;
+    background-color: red
+}
+
+.stInfo {
+    margin: 0 auto;
+    padding: 3% 10% 3% 10%;
+    height: 40%;
+    width: 100%;
+    background-color: yellow;
+}
+
+@keyframes showNext {
+    from {
+        transform-origin: right;
+        transform: rotateY(90deg);
+        opacity: 0;
+    }
+    to {
+        transform-origin: right;
+        transform: rotateY(0deg);
+        opacity: 1;
+    }
+}
+
+@keyframes hidePrev {
+    from {
+        transform-origin: left;
+        transform: rotateY(0deg);
+        opacity: 1;
+    }
+    to {
+        transform-origin: left;
+        transform: rotateY(90deg);
+        opacity: 0;
+    }
+}
+
+@keyframes showPrev {
+    from {
+        transform-origin: left;
+        transform: rotateY(90deg);
+        opacity: 0;
+    }
+    to {
+        transform-origin: left;
+        transform: rotateY(0deg);
+        opacity: 1;
+    }
+}
+
+@keyframes hideNext {
+    from {
+        transform-origin: right;
+        transform: rotateY(0deg);
+        opacity: 1;
+    }
+    to {
+        transform-origin: right;
+        transform: rotateY(90deg);
+        opacity: 0;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    body {
+        overflow-y: scroll;
+    }
+    header {
+        text-align: center;
+        position: static;
+    }
+    main {
+        position: static;
+    }
+    aside {
+        display: none;
+    }
+    nav {
+        display: none;
+    }
+    .stSection {
+        width: 90vw;
+        height: auto;
+        padding: 0;
+        margin: 0vh 5vw 0vh 5vw;
+        display: block;
+        position: static;
+        transform: rotateY(0deg);
+    }
+}
