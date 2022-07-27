@@ -6,19 +6,20 @@ $.getJSON('../data.json', function(data) {
 
 $(function() {
     init();
-
 });
 
 function init() {
+    console.log(window.innerWidth, window.innerHeight);
     initTitle();
     initMain();
     initNav();
-    updateStation(0, 0);
     $('#prevStation').click(function() {
-        updateStation(station, station - 1);
+        // updateStation(station, station - 1);
+        prevStation();
     });
     $('#nextStation').click(function() {
-        updateStation(station, station + 1);
+        // updateStation(station, station + 1);
+        nextStation();
     });
     $('#backHomePage').click(function() {
         window.location.href = "index.html";
@@ -34,9 +35,7 @@ function updateWindow() {
     if ($(window).width() <= 600) {
         console.log("cellphone")
         $('.stSection').css('display', 'block').css('transform', '');
-    } else {
-        updateStation(station, station);
-    }
+    } else {}
 }
 
 function initTitle() {
@@ -45,22 +44,32 @@ function initTitle() {
 
 function initMain() {
     $('main').empty();
-    // $('main').css("width", ("calc(" + jsonData.station.length + "*100vw)"));
     for (let i = 0; i < jsonData.station.length; ++i) {
-        $('main').append(generateSection(i));
+        let newSection = generateSection(i);
+        newSection.hide();
+        if (i == 0) newSection.show();
+        $('main').append(newSection);
     }
 }
 
 function initNav() {
-    $('#stationUl').empty();
-    for (let i = 0; i < jsonData.station.length; ++i) {
+    $('#stationUl').empty().css('width', (((jsonData.station.length + 1) * 20) + 'vw'));
+    for (let i = 0; i <= jsonData.station.length; ++i) {
         let newLi = $('<li></li>');
-        let newH1 = $('<h1></h1>').text(jsonData.station[i].name);
+        let newH1 = $('<h1></h1>');
         newLi.attr('id', ("stBtn" + i));
-        newLi.attr('class', "stBtn clickable");
+        if (i == jsonData.station.length) {
+            newH1.text("終點");
+            newLi.attr('class', "stBtn");
+        } else {
+            newH1.html((i + 1) + "<br>" + jsonData.station[i].name);
+            newLi.attr('class', "stBtn clickable");
+        }
         newLi.append(newH1);
         newLi.click(function() {
-            updateStation(station, i);
+            if (i == station + 1) {
+                nextStation();
+            }
         });
         $('#stationUl').append(newLi);
     }
@@ -100,31 +109,40 @@ function generateInfo(idx) {
     return newInfo;
 }
 
-function updateStation(prev, cur) {
-    console.log(prev + ' ' + cur);
-    if (cur < 0 || cur > jsonData.station.length - 1) return;
-    station = cur;
-    $('main').find('.stSection').each(function(i) {
-        if (i == prev && prev < cur) {
-            $(this).css("animation", "1s ease 0s 1 normal forwards running hidePrev");
-        } else if (i == prev && prev > cur) {
-            $(this).css("animation", "1s ease 0s 1 normal forwards running hideNext");
-        } else if (i == cur && prev < cur) {
-            $(this).css("animation", "1s ease 0s 1 normal forwards running showNext");
-        } else if (i == cur && prev > cur) {
-            $(this).css("animation", "1s ease 0s 1 normal forwards running showPrev");
-        } else if (i == cur || i == prev) {
-            $(this).css("animation", "").css("transform", "rotateY(0deg)");
-        } else {
-            $(this).css("animation", "").css("transform", "rotateY(90deg)");
-        }
+function nextStation() {
+    if (station == jsonData.station.length - 1) return;
+    ++station;
+    $('#stationUl').animate({ left: '+=-20vw' });
+    $('.stSection').each(function() {
+            $(this).removeClass("in inR out outR");
+            $(this).hide();
+            if ($(this).attr("id").replace("stSection", "") == station) {
+                $(this).show();
+                // $(this).addClass("in");
+            } else if ($(this).attr("id").replace("stSection", "") == station - 1) {
+                // $(this).addClass("out");
+            }
+        })
+        // $(('#stSection' + station)).removeClass('in inR out outR').toggleClass("in");
+        // $(('#stSection' + (station - 1))).removeClass('in inR out outR').toggleClass("out");
 
-    });
-    $('.stBtn').find('h1').each(function(i) {
-        if (i == cur) {
-            $(this).css("background-color", "red");
-        } else {
-            $(this).css("background-color", "aqua");
-        }
-    });
+}
+
+function prevStation() {
+    if (station == 0) return;
+    --station;
+    $('#stationUl').animate({ left: '+=20vw' });
+    $('.stSection').each(function() {
+            $(this).hide();
+            $(this).removeClass("in inR out outR");
+            if ($(this).attr("id").replace("stSection", "") == station) {
+                // $(this).addClass("outR");
+                $(this).show();
+            } else if ($(this).attr("id").replace("stSection", "") == station + 1) {
+                // $(this).addClass("inR");
+            }
+        })
+        // $(('#stSection' + station)).removeClass('in inR out outR').toggleClass("outR");
+        // $(('#stSection' + (station + 1))).removeClass('in inR out outR').toggleClass("inR");
+
 }

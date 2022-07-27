@@ -24,6 +24,13 @@ header {
     padding: 1vw;
 }
 
+.btnDiv:hover {
+    animation-name: hoverEffect;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
 .btnDiv h1 {
     text-align: center;
 }
@@ -54,5 +61,16 @@ nav {
     .btnDiv h1 {
         text-align: center;
         display: block;
+    }
+}
+
+@keyframes hoverEffect {
+    from {
+        transform: rotate(5deg);
+        transform: scale(1.05);
+    }
+    to {
+        transform: rotate(-5deg);
+        transform: scale(0.95);
     }
 }
