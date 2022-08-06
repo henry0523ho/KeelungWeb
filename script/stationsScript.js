@@ -53,26 +53,59 @@ function initMain() {
 }
 
 function initNav() {
-    $('#stationUl').empty().css('width', (((jsonData.station.length + 1) * 20) + 'vw'));
-    for (let i = 0; i <= jsonData.station.length; ++i) {
-        let newLi = $('<li></li>');
-        let newH1 = $('<h1></h1>');
-        newLi.attr('id', ("stBtn" + i));
-        if (i == jsonData.station.length) {
-            newH1.text("終點");
-            newLi.attr('class', "stBtn");
-        } else {
-            newH1.html((i + 1) + "<br>" + jsonData.station[i].name);
-            newLi.attr('class', "stBtn clickable");
-        }
-        newLi.append(newH1);
-        newLi.click(function() {
-            if (i == station + 1) {
-                nextStation();
-            }
-        });
-        $('#stationUl').append(newLi);
-    }
+    $('nav').empty();
+    $.each(jsonData.station, function(i, data) {
+        let newStMapName = $("<div></div>")
+            .addClass("clickable stMapName")
+            .attr("id", ("stMapName" + i))
+            .html(data.name + "<br><span style='font-size:0.5em;'>english name</span>")
+            .click(function() { $.fn.toStation(i); });
+        let newStMapNum = $("<div></div>")
+            .addClass(i == 0 ? "clickable stMapNum stMapNumOn" : "clickable stMapNum")
+            .attr("id", ("stMapNum" + i))
+            .html("KL<br>" + $.fn.fixDigits(i + 1, 2))
+            .click(function() { $.fn.toStation(i); });
+        let newStMapPath = $("<div></div>")
+            .addClass("stMapPath")
+            .css("width", (i == jsonData.station.length - 1) ? "0px" : "calc(100% + 0px)");
+        let newStMap = $("<div></div>")
+            .addClass("stMap")
+            .attr("id", ("stMap" + i))
+            .css("width", "calc((100% - 55px)/" + (jsonData.station.length) + ")")
+            .append(newStMapName)
+            .append(newStMapNum)
+            .append(newStMapPath);
+        $('nav').append(newStMap);
+    });
+    $("<div></div>")
+        .addClass("stMap")
+        .attr("id", ("stMapStart"))
+        .append(
+            $("<div></div>")
+            .addClass("stMapName")
+            .html("_" + "<br><span style='font-size:0.5em;'>_</span>")
+            .css("color", "transparent"))
+        .append(
+            $("<div></div>")
+            .addClass("stMapNum stMapNumOn")
+            .attr("id", "stMapNumStart")
+            .html("KL")
+            .css("font-size", "13px")
+            .css("padding-top", "6px"))
+        .append($("<div></div>")
+            .addClass("stMapPath")
+            .css("width", "0px")
+            .css("left", "7px"))
+        .insertBefore("#stMap0");
+    $("<div></div>")
+        .addClass("stMapNum stMapNumOn")
+        .attr("id", "stMapNumEnd")
+        .html("KL")
+        .css("margin-left", "1vw")
+        .css("font-size", "13px")
+        .css("padding-top", "6px")
+        .insertAfter("#stMapNum" + (jsonData.station.length - 1));
+
 }
 
 function generateSection(idx) {
@@ -108,6 +141,18 @@ function generateInfo(idx) {
     newInfo.text(jsonData.station[idx].info);
     return newInfo;
 }
+
+$.fn.toStation = function(n) {
+    $.each(jsonData.station, function(i) {
+        $("#stMapNum" + i).removeClass("stMapNumOn");
+        $("#stMap" + i).css("opacity", i < n ? "0.3" : "1");
+    });
+    $("#stMapNum" + n).addClass("stMapNumOn");
+    $("#stSection" + n).show();
+    $("#stSection" + station).hide();
+    station = n;
+
+};
 
 function nextStation() {
     if (station == jsonData.station.length - 1) return;

@@ -1,3 +1,7 @@
+:root {
+    --st-num-color: rgb(24, 145, 225);
+}
+
 body {
     overflow: hidden;
 }
@@ -27,19 +31,27 @@ aside {
     position: absolute;
     bottom: 8vh;
     z-index: 20;
+    display: none;
 }
 
 nav {
     display: block;
     position: absolute;
-    bottom: 2vh;
-    right: 5vw;
-    width: 40vw;
-    height: 14vh;
-    padding: 0vh 0vw 2vh 0vw;
-    /* background-color: pink; */
+    bottom: 0vh;
+    left: 0vw;
+    width: 100vw;
+    height: 20vh;
+    padding: 0vh 0vw 0vh 0vw;
+    background-color: pink;
     overflow: hidden;
     z-index: 15;
+    padding-left: 1vw;
+    /* display: flex;
+    align-content: center;
+    justify-content: space-evenly;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap; */
 }
 
 #websiteTitle {
@@ -49,18 +61,53 @@ nav {
     background-color: pink;
 }
 
-#stationUl {
-    list-style: none;
-    margin: 0 auto;
-    padding: 0;
+.stMap {
+    /* padding-top: 10vh; */
+    padding: 10vh 0px;
     height: 100%;
+    float: left;
+}
+
+.stMapName {
+    color: black;
+    font-size: 20px;
+    font-weight: 900;
+    transform-origin: left;
+    transform: rotate(-30deg);
     position: relative;
-    left: 0vw;
-    /* display: flex; */
-    /* justify-content: center;
-    align-items: stretch;
-    flex-direction: row;
-    flex-wrap: wrap; */
+    width: 900%;
+    line-height: 10px;
+}
+
+.stMapNum {
+    position: relative;
+    display: inline-block;
+    width: 25px;
+    height: 30px;
+    border: 2px solid var(--st-num-color);
+    border-radius: 8px;
+    vertical-align: middle;
+    text-align: center;
+    font-size: 50%;
+    font-weight: 900;
+    padding-top: 0px;
+    background-color: white;
+    line-height: 1;
+    margin-right: 1vw;
+    z-index: 1;
+}
+
+.stMapNumOn {
+    background-color: var(--st-num-color);
+    color: white;
+}
+
+.stMapPath {
+    height: 8px;
+    background-color: var(--st-num-color);
+    position: relative;
+    top: -18px;
+    z-index: 0;
 }
 
 #prevStation {
