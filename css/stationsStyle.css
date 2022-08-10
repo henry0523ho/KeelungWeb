@@ -1,9 +1,13 @@
 :root {
-    --st-num-color: rgb(24, 145, 225);
+    --st-num-color: rgb(238, 96, 2);
 }
 
 body {
     overflow: hidden;
+}
+
+body::-webkit-scrollbar {
+    display: none;
 }
 
 header {
@@ -17,21 +21,13 @@ header {
 }
 
 main {
-    height: 100vh;
+    height: 75vh;
+    width: 90vw;
     position: relative;
-    top: 0vh;
-    left: 0vw;
+    top: 5vh;
+    left: 5vw;
     /* background: linear-gradient(to right, rgba(255, 0, 0, 1), rgba(0, 255, 0, 1)); */
     /* display: flex; */
-}
-
-aside {
-    height: 5vh;
-    width: 5vw;
-    position: absolute;
-    bottom: 8vh;
-    z-index: 20;
-    display: none;
 }
 
 nav {
@@ -41,17 +37,10 @@ nav {
     left: 0vw;
     width: 100vw;
     height: 20vh;
-    padding: 0vh 0vw 0vh 0vw;
+    padding: 0vh 0vw 0vh 1vw;
     background-color: pink;
     overflow: hidden;
     z-index: 15;
-    padding-left: 1vw;
-    /* display: flex;
-    align-content: center;
-    justify-content: space-evenly;
-    flex-direction: row;
-    align-items: center;
-    flex-wrap: wrap; */
 }
 
 #websiteTitle {
@@ -62,7 +51,6 @@ nav {
 }
 
 .stMap {
-    /* padding-top: 10vh; */
     padding: 10vh 0px;
     height: 100%;
     float: left;
@@ -75,22 +63,23 @@ nav {
     transform-origin: left;
     transform: rotate(-30deg);
     position: relative;
-    width: 900%;
-    line-height: 10px;
+    width: max-content;
+    line-height: 20px;
+    padding-left: 10px;
 }
 
 .stMapNum {
     position: relative;
     display: inline-block;
-    width: 25px;
+    width: 30px;
     height: 30px;
-    border: 2px solid var(--st-num-color);
-    border-radius: 8px;
+    border: 3px solid var(--st-num-color);
+    border-radius: 15px;
     vertical-align: middle;
     text-align: center;
-    font-size: 50%;
+    font-size: 130%;
     font-weight: 900;
-    padding-top: 0px;
+    padding-top: 3px;
     background-color: white;
     line-height: 1;
     margin-right: 1vw;
@@ -104,27 +93,19 @@ nav {
 
 .stMapPath {
     height: 8px;
+    width: 100%;
     background-color: var(--st-num-color);
     position: relative;
     top: -18px;
     z-index: 0;
 }
 
-#prevStation {
-    right: 42vw;
+#stMapNumSt {
+    margin-top: 20px;
 }
 
-#nextStation {
-    right: 2vw;
-}
-
-aside h1 {
-    background-color: green;
-    font-size: 3vh;
-    text-align: center;
-    box-sizing: border-box;
-    margin: 0 auto;
-    padding: 0;
+#stMapNumEnd {
+    margin-left: 1vw;
 }
 
 #backHomePage {
@@ -148,7 +129,6 @@ aside h1 {
 }
 
 .stBtn {
-    /* padding: 2vh 1vw 2vh 1vw; */
     padding: 0;
     width: 20vw;
     height: 100%;
@@ -168,9 +148,8 @@ aside h1 {
 
 .stSection {
     margin: 0;
-    width: 100vw;
-    height: 100vh;
-    padding: 5vh 5vw 5vh 5vw;
+    width: 100%;
+    height: 100%;
     position: absolute;
     z-index: 10;
     background-color: rgba(181, 255, 162, 0.442);
@@ -179,19 +158,19 @@ aside h1 {
 
 .stName {
     margin: 0 auto;
-    padding: 1vh 0 1vh 0;
+    padding: 0.75vh 0 0.75vh 0;
     text-align: center;
-    height: 10%;
+    height: 7.5vh;
     background-color: green;
-    font-size: 7vh;
+    font-size: 6vh;
 }
 
 .stImage {
     display: block;
-    margin: 0 auto;
+    margin: 0;
     height: 50%;
+    max-height: 50%;
     max-width: 100%;
-    max-width: 50%;
     background-color: red
 }
 
@@ -201,6 +180,84 @@ aside h1 {
     height: 40%;
     width: 100%;
     background-color: yellow;
+}
+
+.slideWin {
+    height: 67.5vh;
+    width: 90vw;
+    background-color: white;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    font-size: 50px;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+}
+
+.slideWin::-webkit-scrollbar {
+    display: none;
+}
+
+.slideCon {
+    width: max-content;
+    height: 100%;
+}
+
+.slideInfo {
+    /* height: 64.125vh; */
+    height: 100%;
+    width: 90vw;
+    background-color: rgb(172, 255, 130);
+    float: left;
+    scroll-snap-align: start;
+}
+
+.slideNav {
+    height: 3.75vh;
+    width: 90vw;
+    position: absolute;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.stContent {
+    width: 100%;
+    height: 100%;
+}
+
+.stPhoto {
+    width: 50%;
+    height: 100%;
+    float: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2%;
+}
+
+.stImg {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.stText {
+    width: 50%;
+    height: 100%;
+    float: left;
+    font-size: 16px;
+    padding: 2%;
+}
+
+.slNvNum {
+    font-size: 15px;
+    color: white;
+    background-color: brown;
+    width: 20px;
+    height: 20px;
+    border-radius: 10px;
+    text-align: center;
+    margin: 2px;
 }
 
 @media screen and (max-width: 600px) {
@@ -214,11 +271,37 @@ aside h1 {
     main {
         position: static;
     }
-    aside {
-        display: none;
-    }
     nav {
-        display: none;
+        position: relative;
+        top: 0;
+        left: 0;
+        height: auto;
+        padding: 5vh 5vw 5vh 5vw;
+    }
+    .stMap {
+        height: 50px;
+        float: none;
+        padding: 0;
+    }
+    .stMapName {
+        transform: rotate(0deg);
+        left: 30px;
+    }
+    .stMapNum {
+        top: -25px;
+    }
+    .stMapPath {
+        height: 22px;
+        width: 8px;
+        top: -26px;
+        left: 11px;
+    }
+    #stMapStart {
+        height: 40px;
+    }
+    #stMapNumEnd {
+        margin-left: 0vw;
+        margin-top: 10px;
     }
     .stSection {
         width: 90vw;
@@ -229,128 +312,4 @@ aside h1 {
         position: static;
         transform: rotateY(0deg);
     }
-}
-
-.in {
-    transform-origin: left bottom;
-    animation-name: slideIn, turnIn;
-    animation-duration: 1000ms, 500ms;
-    animation-delay: 0ms, 1000ms;
-    animation-timing-function: ease-in, ease-in;
-    animation-iteration-count: 1, 1;
-    animation-fill-mode: forwards, forwards;
-}
-
-.out {
-    transform-origin: left bottom;
-    animation-name: turnIn, slideOut;
-    animation-duration: 500ms, 1000ms;
-    animation-delay: 0ms, 500ms;
-    animation-timing-function: ease-in, ease-in;
-    animation-iteration-count: 1, 1;
-    animation-fill-mode: forwards, forwards;
-    animation-direction: reverse, normal;
-}
-
-.inR {
-    transform-origin: left bottom;
-    animation-name: turnIn, slideIn;
-    animation-duration: 500ms, 1000ms;
-    animation-delay: 0ms, 500ms;
-    animation-timing-function: ease-in, ease-in;
-    animation-iteration-count: 1, 1;
-    animation-fill-mode: forwards, forwards;
-    animation-direction: reverse, reverse;
-}
-
-.outR {
-    transform-origin: left bottom;
-    animation-name: slideOut, turnIn;
-    animation-duration: 1000ms, 500ms;
-    animation-delay: 0ms, 1000ms;
-    animation-timing-function: ease-in, ease-in;
-    animation-iteration-count: 1, 1;
-    animation-fill-mode: forwards, forwards;
-    animation-direction: reverse, normal;
-}
-
-@keyframes slideIn {
-    from {
-        transform: skewY(-25deg);
-        width: 0vw;
-        height: 0vh;
-        left: 100vw;
-        bottom: 100vh;
-        opacity: 0;
-    }
-    to {
-        transform: skewY(-25deg);
-        width: 50vw;
-        height: 50vh;
-        left: 0vw;
-        bottom: 0vh;
-        opacity: 1;
-    }
-}
-
-@keyframes turnIn {
-    from {
-        left: 0vw;
-        bottom: 0vh;
-        width: 50vw;
-        height: 50vh;
-        transform: skewY(-25deg);
-        opacity: 1;
-    }
-    to {
-        left: 0vw;
-        bottom: 0vh;
-        width: 100vw;
-        height: 100vh;
-        transform: skewY(0);
-        opacity: 1;
-    }
-}
-
-@keyframes slideOut {
-    from {
-        transform: skewY(-25deg);
-        width: 50vw;
-        height: 50vh;
-        left: 0vw;
-        bottom: 0vh;
-        opacity: 1;
-    }
-    to {
-        transform: skewY(-25deg);
-        width: 100vw;
-        height: 100vh;
-        left: -100vw;
-        bottom: -100vh;
-        opacity: 0;
-    }
-}
-
-#triangle {
-    width: 10vw;
-    height: 10vh;
-    border-style: solid;
-    border-width: 0vh 0vw 100vh 100vw;
-    border-color: transparent transparent #333333 transparent;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    z-index: 0;
-}
-
-#triMash {
-    width: 0;
-    height: 0;
-    border-style: solid;
-    border-width: 0vh 0vw 100vh 50vw;
-    border-color: transparent transparent white transparent;
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    z-index: 1;
 }
