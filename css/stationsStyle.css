@@ -43,6 +43,23 @@ nav {
     z-index: 15;
 }
 
+#showNav {
+    display: none;
+    border: 5px solid brown;
+    background-color: orange;
+    color: white;
+    border-radius: 5px;
+}
+
+#hideNav {
+    display: none;
+    color: black;
+    font-weight: 900;
+    font-size: 40px;
+    text-align: center;
+    line-height: 40px;
+}
+
 #websiteTitle {
     margin: 0 auto;
     z-index: 10;
@@ -272,11 +289,28 @@ nav {
         position: static;
     }
     nav {
-        position: relative;
+        position: absolute;
         top: 0;
-        left: 0;
+        left: -100vw;
         height: auto;
         padding: 5vh 5vw 5vh 5vw;
+        z-index: 1000;
+    }
+    #showNav {
+        display: block;
+        position: absolute;
+        left: 1vw;
+        top: 1vh;
+        width: 50px;
+        height: 50px;
+    }
+    #hideNav {
+        display: block;
+        position: absolute;
+        top: 1vh;
+        right: 1vw;
+        width: 50px;
+        height: 50px;
     }
     .stMap {
         height: 50px;

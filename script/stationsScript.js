@@ -14,14 +14,12 @@ function init() {
     initTitle();
     initMain();
     initNav();
-    $('#prevStation').click(function() {
-        // updateStation(station, station - 1);
-        prevStation();
+    $('#showNav').click(function() {
+        $.fn.showNav();
     });
-    $('#nextStation').click(function() {
-        // updateStation(station, station + 1);
-        nextStation();
-    });
+    $('#hideNav').click(function() {
+        $.fn.hideNav();
+    })
     $('#backHomePage').click(function() {
         window.location.href = "index.html";
     });
@@ -35,6 +33,7 @@ function init() {
 function updateWindow() {
     if ($(window).width() <= 600) {
         console.log("cellphone")
+        $('nav').attr("style", "");
     } else {}
 }
 
@@ -88,6 +87,13 @@ function initNav() {
         .attr("id", "stMapNumEnd")
         .html("終")
         .insertAfter("#stMapNum" + (jsonData.station.length - 1));
+
+    $('nav').append(
+        $("<div></div>")
+        .addClass("clickable")
+        .attr("id", "hideNav")
+        .text("<")
+    );
 
 }
 
@@ -210,6 +216,7 @@ $.fn.toSlide = function(stIdx, idx) {
 }
 
 $.fn.toStation = function(n) {
+    if (n == station) return;
     $.each(jsonData.station, function(i) {
         $("#stMapNum" + i).removeClass("stMapNumOn");
         $("#stMap" + i).css("opacity", i < n ? "0.3" : "1");
@@ -225,4 +232,19 @@ $.fn.toStation = function(n) {
     });
     // $.fn.toSlide(n,0);
     $.fn.changeSlide(n);
+    $.fn.hideNav();
 };
+
+$.fn.showNav = function() {
+    if (window.innerWidth <= 600) {
+        $('nav').animate({ "left": "0vw" });
+    } else {
+        $('nav').attr("style", "");
+    }
+}
+
+$.fn.hideNav = function() {
+    if (window.innerWidth <= 600) {
+        $('nav').animate({ "left": "-100vw" });
+    }
+}
