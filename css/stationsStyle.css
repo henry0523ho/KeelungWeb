@@ -87,6 +87,7 @@ nav {
 
 .stMapNum {
     position: relative;
+    /* position: absolute; */
     display: inline-block;
     width: 30px;
     height: 30px;
@@ -228,6 +229,14 @@ nav {
     scroll-snap-align: start;
 }
 
+.pageCont {
+    width: 50%;
+    height: 100%;
+    float: left;
+    padding: 2%;
+    text-align: center;
+}
+
 .slideNav {
     height: 3.75vh;
     width: 90vw;
@@ -255,15 +264,16 @@ nav {
 
 .stImg {
     max-width: 100%;
-    max-height: 100%;
+    max-height: 90%;
+    box-sizing: border-box;
 }
 
 .stText {
-    width: 50%;
-    height: 100%;
+    width: 100%;
     float: left;
     font-size: 16px;
     padding: 2%;
+    max-height: min-content;
 }
 
 .slNvNum {

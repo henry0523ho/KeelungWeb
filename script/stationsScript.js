@@ -130,40 +130,85 @@ function initSlide(idx) {
         })
     );
     for (let i = 0; i < jsonData.station[idx].info.length; ++i) {
-        initSlideInfo(idx, i);
-        initSlideNav(idx, i);
+        // initSlideInfo(idx, i);
+        // initSlideNav(idx, i);
+        appendInfo(idx, i);
     }
 }
 
+function appendInfo(stIdx, idx) {
+    let page = $("#slideCon" + stIdx).children().length - 1;
+    // console.log(page);
+    if (page == -1 || jsonData.station[stIdx].info[idx].width == "full" || $("#slPg" + stIdx + "R" + page).html() != "") {
+        // console.log(stIdx, idx, "new");
+        newSlidePage(stIdx);
+        newSlideNav(stIdx);
+        page = $("#slideCon" + stIdx).children().length - 1;
+    }
+    if (jsonData.station[stIdx].info[idx].width == "full") {
+        // console.log("cant find", $("#slPg" + stIdx + "L" + page));
+        $("#slPg" + stIdx + "L" + page).append(
+            $('<img>')
+            .attr("src", "src/" + jsonData.station[stIdx].info[idx].image)
+            .attr("class", "stImg")
+        );
+        $("#slPg" + stIdx + "R" + page).append(
+            $('<div></div>')
+            .attr("class", "stText")
+            .html(jsonData.station[stIdx].info[idx].text)
+        );
+    } else {
+        if ($("#slPg" + stIdx + "L" + page).html() == "") {
+            $("#slPg" + stIdx + "L" + page)
+                .append(
+                    $('<img>')
+                    .attr("src", "src/" + jsonData.station[stIdx].info[idx].image)
+                    .attr("class", "stImg")
+                )
+                .append(
+                    $('<div></div>')
+                    .attr("class", "stText")
+                    .html(jsonData.station[stIdx].info[idx].text)
+                );
+        } else {
+            $("#slPg" + stIdx + "R" + page)
+                .append(
+                    $('<img>')
+                    .attr("src", "src/" + jsonData.station[stIdx].info[idx].image)
+                    .attr("class", "stImg")
+                )
+                .append(
+                    $('<div></div>')
+                    .attr("class", "stText")
+                    .html(jsonData.station[stIdx].info[idx].text)
+                );
+        }
+    }
+}
 
-function initSlideInfo(stIdx, idx) {
+function newSlidePage(stIdx) {
+    let idx = $("#slideCon" + stIdx).children().length;
+    // console.log(stIdx, "new", idx);
     $("#slideCon" + stIdx).append(
         $("<div></div>")
         .attr("id", "slIf" + stIdx + "_" + idx)
         .attr("class", "slideInfo")
         .append(
             $('<div></div>')
-            .attr("class", "stContent")
-            .append(
-                $('<div></div>')
-                .attr("class", "stPhoto")
-                .append(
-                    $('<img>')
-                    .attr("src", "src/" + jsonData.station[stIdx].info[idx].image)
-                    .attr("class", "stImg")
-                )
-            )
-            .append(
-                $('<div></div>')
-                .attr("class", "stText")
-                .html(jsonData.station[stIdx].info[idx].text)
-            )
+            .attr("class", "pageCont")
+            .attr("id", "slPg" + stIdx + "L" + idx)
         )
-    )
+        .append(
+            $('<div></div>')
+            .attr("class", "pageCont")
+            .attr("id", "slPg" + stIdx + "R" + idx)
+        )
+    );
 }
 
 
-function initSlideNav(stIdx, idx) {
+function newSlideNav(stIdx) {
+    let idx = $("#slideNav" + stIdx).children().length;
     $("#slideNav" + stIdx).append(
         $('<div></div>')
         .attr("class", "slNvNum")
@@ -172,7 +217,7 @@ function initSlideNav(stIdx, idx) {
         .css("opacity", "0.3")
     );
     if (idx == 0) {
-        $("#slNvNum" + stIdx + "_" + idx).css("opacity", "1");
+        $("#slNvNum" + stIdx + "_" + 0).css("opacity", "1");
     }
     $("#slNvNum" + stIdx + "_" + idx).click(function() {
         $.fn.toSlide(stIdx, idx);
