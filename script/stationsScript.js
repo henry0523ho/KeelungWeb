@@ -14,6 +14,7 @@ function init() {
     initTitle();
     initMain();
     initNav();
+    initMainSection();
     $('#showNav').click(function() {
         $.fn.showNav();
     });
@@ -23,6 +24,12 @@ function init() {
     $('#backHomePage').click(function() {
         window.location.href = "index.html";
     });
+    $('#closeMS').click(function() {
+        $('#mainSection').hide();
+    });
+    $("#websiteTitle").click(function() {
+        $("#mainSection").show();
+    });
     $(window).resize(function() {
         updateWindow();
     });
@@ -30,11 +37,23 @@ function init() {
 
 }
 
+function initMainSection() {
+    $('#MStitle').text(jsonData.title);
+    $('#MScontent').text(jsonData.mainContent);
+}
+
 function updateWindow() {
     if ($(window).width() <= 600) {
         console.log("cellphone")
         $('nav').attr("style", "");
-    } else {}
+        $('.stMapPath').each(function(i) {
+            $(this).css('width', "8px");
+        });
+    } else {
+        $('.stMapPath').each(function(i) {
+            $(this).css('width', "calc((100% - 55px)/" + (jsonData.station.length) + ")");
+        });
+    }
 }
 
 function initTitle() {
@@ -62,7 +81,8 @@ function initNav() {
             .html($.fn.fixDigits(i + 1, 2))
             .click(function() { $.fn.toStation(i); });
         let newStMapPath = $("<div></div>")
-            .addClass("stMapPath");
+            .addClass("stMapPath")
+            .css("width", "calc(100% /" + jsonData.station.length + ")");
         let newStMap = $("<div></div>")
             .addClass("stMap")
             .attr("id", ("stMap" + i))

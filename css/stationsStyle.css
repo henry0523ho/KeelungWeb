@@ -10,6 +10,26 @@ body::-webkit-scrollbar {
     display: none;
 }
 
+#mainSection {
+    width: 90vw;
+    height: 90vh;
+    z-index: 3000;
+    background-color: rgb(255, 224, 87);
+    position: absolute;
+    top: 5vh;
+    left: 5vw;
+    padding: 5%;
+}
+
+#closeMS {
+    background-color: red;
+    position: absolute;
+    top: 2%;
+    right: 2%;
+    width: 50px;
+    height: 50px;
+}
+
 header {
     width: 100vw;
     height: 10vh;
@@ -68,7 +88,7 @@ nav {
 }
 
 .stMap {
-    padding: 10vh 0px;
+    /* padding: 10vh 0px; */
     height: 100%;
     float: left;
 }
@@ -79,10 +99,13 @@ nav {
     font-weight: 900;
     transform-origin: left;
     transform: rotate(-30deg);
-    position: relative;
-    width: max-content;
+    position: absolute;
+    /* width: max-content; */
+    width: 23vh;
     line-height: 20px;
-    padding-left: 10px;
+    padding-left: 5px;
+    /* top: 10vh; */
+    bottom: 4.5vh;
 }
 
 .stMapNum {
@@ -102,6 +125,7 @@ nav {
     line-height: 1;
     margin-right: 1vw;
     z-index: 1;
+    top: 15vh;
 }
 
 .stMapNumOn {
@@ -111,19 +135,20 @@ nav {
 
 .stMapPath {
     height: 8px;
-    width: 100%;
+    /* width: 100%; */
     background-color: var(--st-num-color);
-    position: relative;
-    top: -18px;
+    /* position: relative; */
+    position: absolute;
+    top: calc(15vh + 11px);
     z-index: 0;
 }
 
 #stMapNumSt {
-    margin-top: 20px;
+    /* margin-top: 20px; */
 }
 
 #stMapNumEnd {
-    margin-left: 1vw;
+    margin-left: 0.3vw;
 }
 
 #backHomePage {
@@ -328,16 +353,22 @@ nav {
         padding: 0;
     }
     .stMapName {
+        position: relative;
         transform: rotate(0deg);
-        left: 30px;
+        bottom: initial;
+        top: 25px;
+        margin-left: 30px;
+        width: max-content;
     }
     .stMapNum {
-        top: -25px;
+        position: relative;
+        top: initial;
     }
     .stMapPath {
-        height: 22px;
+        position: relative;
+        height: 30px;
         width: 8px;
-        top: -26px;
+        top: initial;
         left: 11px;
     }
     #stMapStart {
@@ -355,5 +386,21 @@ nav {
         display: block;
         position: static;
         transform: rotateY(0deg);
+    }
+    .pageCont {
+        width: 100%;
+        height: max-content;
+        float: none;
+    }
+    .slideWin {
+        height: 80vh;
+    }
+    .stImg {
+        max-width: 70%;
+        max-height: 30%;
+    }
+    .slideInfo {
+        overflow-y: auto;
+        overflow-x: hidden;
     }
 }
