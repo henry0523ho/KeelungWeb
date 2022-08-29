@@ -2,7 +2,7 @@ var jsonData = {};
 var station = 0;
 
 function getJsonData(callback) {
-    $.getJSON('../data.json', function(data) {
+    $.getJSON('data.json', function(data) {
         jsonData = data[window.localStorage.getItem("region")];
         callback();
     });
