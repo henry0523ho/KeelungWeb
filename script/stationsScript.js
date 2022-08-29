@@ -1,16 +1,20 @@
-$.jsonData = {};
+var jsonData = {};
 var station = 0;
-$.getJSON('../data.json', function(data) {
-    $.jsonData = data[window.localStorage.getItem("region")];
-});
+
+function getJsonData(callback) {
+    $.getJSON('../data.json', function(data) {
+        jsonData = data[window.localStorage.getItem("region")];
+        callback();
+    });
+}
 
 $(function() {
-    init();
+    getJsonData(init);
 });
 
 function init() {
     console.log(window.innerWidth, window.innerHeight);
-    $('title').text($.jsonData.title);
+    $('title').text(jsonData.title);
     initTitle();
     initMain();
     initNav();
@@ -38,8 +42,8 @@ function init() {
 }
 
 function initMainSection() {
-    $('#MStitle').text($.jsonData.title);
-    $('#MScontent').text($.jsonData.mainContent);
+    $('#MStitle').text(jsonData.title);
+    $('#MScontent').text(jsonData.mainContent);
 }
 
 function updateWindow() {
@@ -51,25 +55,25 @@ function updateWindow() {
         });
     } else {
         $('.stMapPath').each(function(i) {
-            $(this).css('width', "calc((100% - 55px)/" + ($.jsonData.station.length) + ")");
+            $(this).css('width', "calc((100% - 55px)/" + (jsonData.station.length) + ")");
         });
     }
 }
 
 function initTitle() {
-    $('#websiteTitle').text($.jsonData.title);
+    $('#websiteTitle').text(jsonData.title);
 }
 
 function initMain() {
     $('main').empty();
-    for (let i = 0; i < $.jsonData.station.length; ++i) {
+    for (let i = 0; i < jsonData.station.length; ++i) {
         initSection(i);
     }
 }
 
 function initNav() {
     $('nav').empty();
-    $.each($.jsonData.station, function(i, data) {
+    $.each(jsonData.station, function(i, data) {
         let newStMapName = $("<div></div>")
             .addClass("clickable stMapName")
             .attr("id", ("stMapName" + i))
@@ -82,14 +86,14 @@ function initNav() {
             .click(function() { $.fn.toStation(i); });
         let newStMapPath = $("<div></div>")
             .addClass("stMapPath")
-            .css("width", "calc(100% /" + $.jsonData.station.length + ")");
+            .css("width", "calc(100% /" + jsonData.station.length + ")");
         let newStMap = $("<div></div>")
             .addClass("stMap")
             .attr("id", ("stMap" + i))
-            .css("width", "calc((100% - 55px)/" + ($.jsonData.station.length) + ")")
+            .css("width", "calc((100% - 55px)/" + (jsonData.station.length) + ")")
             .append(newStMapName)
             .append(newStMapNum);
-        if (i != $.jsonData.station.length - 1)
+        if (i != jsonData.station.length - 1)
             newStMap.append(newStMapPath);
         $('nav').append(newStMap);
     });
@@ -106,7 +110,7 @@ function initNav() {
         .addClass("stMapNum stMapNumOn")
         .attr("id", "stMapNumEnd")
         .html("終")
-        .insertAfter("#stMapNum" + ($.jsonData.station.length - 1));
+        .insertAfter("#stMapNum" + (jsonData.station.length - 1));
 
     $('nav').append(
         $("<div></div>")
@@ -149,7 +153,7 @@ function initSlide(idx) {
             $.fn.changeSlide(idx);
         })
     );
-    for (let i = 0; i < $.jsonData.station[idx].info.length; ++i) {
+    for (let i = 0; i < jsonData.station[idx].info.length; ++i) {
         // initSlideInfo(idx, i);
         // initSlideNav(idx, i);
         appendInfo(idx, i);
@@ -159,48 +163,48 @@ function initSlide(idx) {
 function appendInfo(stIdx, idx) {
     let page = $("#slideCon" + stIdx).children().length - 1;
     // console.log(page);
-    if (page == -1 || $.jsonData.station[stIdx].info[idx].width == "full" || $("#slPg" + stIdx + "R" + page).html() != "") {
+    if (page == -1 || jsonData.station[stIdx].info[idx].width == "full" || $("#slPg" + stIdx + "R" + page).html() != "") {
         // console.log(stIdx, idx, "new");
         newSlidePage(stIdx);
         newSlideNav(stIdx);
         page = $("#slideCon" + stIdx).children().length - 1;
     }
-    if ($.jsonData.station[stIdx].info[idx].width == "full") {
+    if (jsonData.station[stIdx].info[idx].width == "full") {
         // console.log("cant find", $("#slPg" + stIdx + "L" + page));
         $("#slPg" + stIdx + "L" + page).append(
             $('<img>')
-            .attr("src", "src/" + $.jsonData.station[stIdx].info[idx].image)
+            .attr("src", "src/" + jsonData.station[stIdx].info[idx].image)
             .attr("class", "stImg")
         );
         $("#slPg" + stIdx + "R" + page).append(
             $('<div></div>')
             .attr("class", "stText")
-            .html($.jsonData.station[stIdx].info[idx].text)
+            .html(jsonData.station[stIdx].info[idx].text)
         );
     } else {
         if ($("#slPg" + stIdx + "L" + page).html() == "") {
             $("#slPg" + stIdx + "L" + page)
                 .append(
                     $('<img>')
-                    .attr("src", "src/" + $.jsonData.station[stIdx].info[idx].image)
+                    .attr("src", "src/" + jsonData.station[stIdx].info[idx].image)
                     .attr("class", "stImg")
                 )
                 .append(
                     $('<div></div>')
                     .attr("class", "stText")
-                    .html($.jsonData.station[stIdx].info[idx].text)
+                    .html(jsonData.station[stIdx].info[idx].text)
                 );
         } else {
             $("#slPg" + stIdx + "R" + page)
                 .append(
                     $('<img>')
-                    .attr("src", "src/" + $.jsonData.station[stIdx].info[idx].image)
+                    .attr("src", "src/" + jsonData.station[stIdx].info[idx].image)
                     .attr("class", "stImg")
                 )
                 .append(
                     $('<div></div>')
                     .attr("class", "stText")
-                    .html($.jsonData.station[stIdx].info[idx].text)
+                    .html(jsonData.station[stIdx].info[idx].text)
                 );
         }
     }
@@ -250,7 +254,7 @@ function initName(idx) {
         $('<h1></h1>')
         .attr("id", ("stName" + idx))
         .attr("class", "stName")
-        .text($.jsonData.station[idx].name)
+        .text(jsonData.station[idx].name)
     );
 }
 
@@ -282,7 +286,7 @@ $.fn.toSlide = function(stIdx, idx) {
 
 $.fn.toStation = function(n) {
     if (n == station) return;
-    $.each($.jsonData.station, function(i) {
+    $.each(jsonData.station, function(i) {
         $("#stMapNum" + i).removeClass("stMapNumOn");
         $("#stMap" + i).css("opacity", i < n ? "0.3" : "1");
     });
