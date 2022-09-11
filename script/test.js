@@ -13,74 +13,29 @@ $(function() {
 });
 
 function init() {
-    console.log(window.innerWidth, window.innerHeight);
-    $('title').text(jsonData.title);
-    initTitle();
-    initMain();
     initNav();
-    initMainSection();
-    $('#showNav').click(function() {
-        $.fn.showNav();
-    });
-    $('#hideNav').click(function() {
-        $.fn.hideNav();
-    })
-    $('#backHomePage').click(function() {
-        window.location.href = "index.html";
-    });
-    $('#closeMS').click(function() {
-        $('#mainSection').hide();
-    });
-    $("#websiteTitle").click(function() {
-        $("#mainSection").show();
-    });
-    $(window).resize(function() {
-        updateWindow();
-    });
-    updateWindow();
-
+    initMain();
+    initTitle();
 }
 
-function initMainSection() {
-    $('#MStitle').text(jsonData.title);
-    $('#MScontent').text(jsonData.mainContent);
-}
-
-function updateWindow() {
-    if ($(window).width() <= 600) {
-        console.log("cellphone")
-        $('nav').attr("style", "");
-        $('.stMapPath').each(function(i) {
-            $(this).css('width', "8px");
-        });
-    } else {
-        $('.stMapPath').each(function(i) {
-            $(this).css('width', "calc((100% - 55px)/" + (jsonData.station.length) + ")");
-        });
-    }
-    updateSD();
-
-}
-
-function updateSD() {
-    $('.SDWrap').each(function() {
-        console.log($(this).width(), $(this).children(".SD").width());
-        if ($(this).width() < $(this).children(".SD").width()) {
-            $(this).children("#SDSnd").removeClass("SDWait")
-            $(this).children("#SDSnd").addClass("SDSnd");
-            $(this).children("#SDFst").addClass("SDFst");
-            $(this).css("justify-content", "flex-start")
-        } else {
-            $(this).children("#SDSnd").addClass("SDWait")
-            $(this).children("#SDSnd").removeClass("SDSnd");
-            $(this).children("#SDFst").removeClass("SDFst");
-            $(this).css("justify-content", "center")
-        }
+function initNav() {
+    $.each(jsonData.station, function(idx, val) {
+        $('#navTable').append(
+            $('<tr></tr>').append(
+                $('<td></td>').append(
+                    $('<div></div>').text(idx + 1)
+                    .addClass('mapNum')
+                ).append(
+                    $('<div></div>')
+                    .addClass((idx == jsonData.station.length - 1) ? '' : 'mapPath')
+                )
+            ).append(
+                $('<td></td>').append(
+                    $('<div></div>').text(val.name).addClass("mapText")
+                )
+            ).click(function() { $.fn.toStation(idx); })
+        )
     });
-}
-
-function initTitle() {
-    $('#websiteTitle').text(jsonData.title);
 }
 
 function initMain() {
@@ -88,56 +43,6 @@ function initMain() {
     for (let i = 0; i < jsonData.station.length; ++i) {
         initSection(i);
     }
-}
-
-function initNav() {
-    $('nav').empty();
-    $.each(jsonData.station, function(i, data) {
-        let newStMapName = $("<div></div>")
-            .addClass("clickable stMapName")
-            .attr("id", ("stMapName" + i))
-            .html(data.name)
-            .click(function() { $.fn.toStation(i); });
-        let newStMapNum = $("<div></div>")
-            .addClass(i == 0 ? "clickable stMapNum stMapNumOn" : "clickable stMapNum")
-            .attr("id", ("stMapNum" + i))
-            .html($.fn.fixDigits(i + 1, 2))
-            .click(function() { $.fn.toStation(i); });
-        let newStMapPath = $("<div></div>")
-            .addClass("stMapPath")
-            .css("width", "calc(100% /" + jsonData.station.length + ")");
-        let newStMap = $("<div></div>")
-            .addClass("stMap")
-            .attr("id", ("stMap" + i))
-            .css("width", "calc((100% - 55px)/" + (jsonData.station.length) + ")")
-            .append(newStMapName)
-            .append(newStMapNum);
-        if (i != jsonData.station.length - 1)
-            newStMap.append(newStMapPath);
-        $('nav').append(newStMap);
-    });
-    $("<div></div>")
-        .addClass("stMap")
-        .attr("id", "stMapStart")
-        .append(
-            $("<div></div>")
-            .addClass("stMapNum stMapNumOn")
-            .attr("id", "stMapNumSt")
-            .html("起"))
-        .insertBefore("#stMap0");
-    $("<div></div>")
-        .addClass("stMapNum stMapNumOn")
-        .attr("id", "stMapNumEnd")
-        .html("終")
-        .insertAfter("#stMapNum" + (jsonData.station.length - 1));
-
-    $('nav').append(
-        $("<div></div>")
-        .addClass("clickable")
-        .attr("id", "hideNav")
-        .text("<")
-    );
-
 }
 
 function initSection(idx) {
@@ -152,6 +57,15 @@ function initSection(idx) {
     if (idx == 0) {
         $("#stSection" + idx).show();
     }
+}
+
+function initName(idx) {
+    $("#stSection" + idx).append(
+        $('<div></div>')
+        .attr("id", ("stName" + idx))
+        .attr("class", "stName")
+    );
+    $.fn.genScrollDisplay($("#stName" + idx), jsonData.station[idx].name);
 }
 
 function initSlide(idx) {
@@ -177,6 +91,33 @@ function initSlide(idx) {
         // initSlideNav(idx, i);
         appendInfo(idx, i);
     }
+}
+
+$.fn.genScrollDisplay = function(node, content) {
+    let wrap = $('<div></div>')
+        .attr("class", "SDWrap")
+    let first = $('<div></div>')
+        .attr("id", "SDFst")
+        .attr("class", "SD")
+        .html(content);
+    let second = $('<div></div>')
+        .attr("id", "SDSnd")
+        .attr("class", "SD SDWait")
+        .text(content);
+    wrap.append(first).append(second);
+    node.append(wrap);
+}
+
+$.fn.changeSlide = function(stIdx) {
+    let w = $("#slIf" + stIdx + "_0")[0].getBoundingClientRect().width;
+    let idx = Math.round($("#slideWin" + stIdx).scrollLeft() / w);
+    $(".slNvNum").each(function() {
+        if ($(this).attr("id") == ("slNvNum" + stIdx + "_" + idx)) {
+            $(this).css("opacity", "1");
+        } else {
+            $(this).css("opacity", "0.3");
+        }
+    });
 }
 
 function appendInfo(stIdx, idx) {
@@ -249,7 +190,6 @@ function newSlidePage(stIdx) {
     );
 }
 
-
 function newSlideNav(stIdx) {
     let idx = $("#slideNav" + stIdx).children().length;
     $("#slideNav" + stIdx).append(
@@ -267,28 +207,6 @@ function newSlideNav(stIdx) {
     });
 }
 
-
-function initName(idx) {
-    $("#stSection" + idx).append(
-        $('<div></div>')
-        .attr("id", ("stName" + idx))
-        .attr("class", "stName")
-    );
-    $.fn.genScrollDisplay($("#stName" + idx), jsonData.station[idx].name);
-}
-
-$.fn.changeSlide = function(stIdx) {
-    let w = $("#slIf" + stIdx + "_0")[0].getBoundingClientRect().width;
-    let idx = Math.round($("#slideWin" + stIdx).scrollLeft() / w);
-    $(".slNvNum").each(function() {
-        if ($(this).attr("id") == ("slNvNum" + stIdx + "_" + idx)) {
-            $(this).css("opacity", "1");
-        } else {
-            $(this).css("opacity", "0.3");
-        }
-    });
-}
-
 $.fn.toSlide = function(stIdx, idx) {
     $("#slideWin" + stIdx)
         .scrollLeft(
@@ -301,6 +219,10 @@ $.fn.toSlide = function(stIdx, idx) {
     //         $(this).css("opacity", "0.3");
     //     }
     // });
+}
+
+function initTitle() {
+    $('#websiteTitle').text(jsonData.title);
 }
 
 $.fn.toStation = function(n) {
@@ -338,17 +260,19 @@ $.fn.hideNav = function() {
     }
 }
 
-$.fn.genScrollDisplay = function(node, content) {
-    let wrap = $('<div></div>')
-        .attr("class", "SDWrap")
-    let first = $('<div></div>')
-        .attr("id", "SDFst")
-        .attr("class", "SD")
-        .html(content);
-    let second = $('<div></div>')
-        .attr("id", "SDSnd")
-        .attr("class", "SD SDWait")
-        .text(content);
-    wrap.append(first).append(second);
-    node.append(wrap);
+function updateSD() {
+    $('.SDWrap').each(function() {
+        console.log($(this).width(), $(this).children(".SD").width());
+        if ($(this).width() < $(this).children(".SD").width()) {
+            $(this).children("#SDSnd").removeClass("SDWait")
+            $(this).children("#SDSnd").addClass("SDSnd");
+            $(this).children("#SDFst").addClass("SDFst");
+            $(this).css("justify-content", "flex-start")
+        } else {
+            $(this).children("#SDSnd").addClass("SDWait")
+            $(this).children("#SDSnd").removeClass("SDSnd");
+            $(this).children("#SDFst").removeClass("SDFst");
+            $(this).css("justify-content", "center")
+        }
+    });
 }
