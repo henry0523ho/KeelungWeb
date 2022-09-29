@@ -21,7 +21,7 @@ nav {
     top: 10vh;
     height: 90vh;
     width: 20vw;
-    padding: 1%;
+    padding: min(1vh, 1vw);
     background-color: pink;
     overflow-y: auto;
 }
@@ -42,6 +42,15 @@ table {
 
 td {
     vertical-align: top;
+}
+
+tr:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+tr:hover .mapText {
+    font-size: 25px;
+    line-height: 25px;
 }
 
 .mapNum {
@@ -67,9 +76,9 @@ td {
 
 .mapPath {
     height: calc(100% - 28px);
-    /* min-height: 25px; */
     width: 8px;
-    margin: 0 auto;
+    margin-left: 11px;
+    margin-right: 11px;
     background-color: var(--map-color);
     transform: translate(0px, -2px) scale(1, 1.3);
     z-index: 0;
@@ -99,6 +108,7 @@ td {
     height: 7.5vh;
     background-color: green;
     font-size: 6vh;
+    overflow: hidden;
 }
 
 .SDWrap {
@@ -177,7 +187,6 @@ td {
 }
 
 .slideInfo {
-    /* height: 64.125vh; */
     height: 100%;
     width: 80vw;
     background-color: rgb(172, 255, 130);
@@ -188,11 +197,6 @@ td {
 .stSection {
     width: 100%;
     height: 100%;
-    /* padding: 0; */
-    /* margin: 0vh 5vw 0vh 5vw; */
-    /* display: block; */
-    /* position: static; */
-    /* transform: rotateY(0deg); */
 }
 
 .pageCont {
@@ -251,4 +255,111 @@ td {
     border-radius: 10px;
     text-align: center;
     margin: 2px;
+}
+
+#mainSection {
+    width: 90vw;
+    height: 90vh;
+    z-index: 3000;
+    background-color: rgb(255, 224, 87);
+    position: absolute;
+    top: 5vh;
+    left: 5vw;
+    padding: 5%;
+}
+
+#closeMS {
+    background-color: red;
+    position: absolute;
+    top: 2%;
+    right: 2%;
+    width: 50px;
+    height: 50px;
+}
+
+
+/* #backHomePage {
+    padding: 1vh;
+    height: 10vh;
+    width: fit-content;
+    float: right;
+}
+
+#backHomePage:hover {
+    color: white;
+    background-color: navy;
+} */
+
+#websiteTitle {
+    /* height: 100%; */
+    /* float: none; */
+    font-size: 6vh;
+    /* vertical-align: middle; */
+    /* overflow: hidden; */
+    /* text-align: center; */
+    display: inline-block;
+}
+
+#fillWrap {
+    height: 100%;
+    float: none;
+    vertical-align: middle;
+    overflow: hidden;
+    text-align: center;
+}
+
+#mainTitle {
+    height: 100%;
+    width: max-content;
+    float: left;
+    font-size: 6vh;
+    vertical-align: middle;
+}
+
+#toggleNav {
+    margin: 2vh 0vh;
+    height: 6vh;
+    width: fit-content;
+    float: left;
+}
+
+#toggleNav:hover {
+    color: white;
+    background-color: navy;
+}
+
+@media screen and (max-width: 600px) {
+    body {
+        overflow-y: auto;
+    }
+    main {
+        top: 10vh;
+        left: 0vw;
+        width: 100vw;
+    }
+    nav {
+        left: -100vw;
+        z-index: 1000;
+        width: 100vw;
+    }
+    .slideInfo {
+        width: 100vw;
+        overflow-y: auto;
+    }
+    .pageCont {
+        width: 100%;
+        height: 50%;
+    }
+    #mainTitle {
+        font-size: 3vh;
+        width: 6vh;
+        text-align: center;
+    }
+    .stName {
+        font-size: 4vh;
+        height: 5.5vh;
+    }
+    .slideWin {
+        height: calc(100% - 5.5vh);
+    }
 }
