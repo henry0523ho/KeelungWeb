@@ -102,6 +102,15 @@ tr:hover .mapText {
     line-height: 20px;
 }
 
+.mapTextOn {
+    font-size: 25px;
+    line-height: 25px;
+}
+
+.stMapOn {
+    background-color: rgba(200, 200, 50, 0.5);
+}
+
 .stName {
     margin: 0 auto;
     text-align: center;

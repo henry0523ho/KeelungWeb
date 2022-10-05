@@ -1,5 +1,5 @@
 var jsonData = {};
-var station = 0;
+var station = -1;
 var navState = true;
 
 function getJsonData(callback) {
@@ -14,6 +14,7 @@ $(function() {
 });
 
 function init() {
+
     initNav();
     updateSlide(0);
     $('.slideWin').scroll(function(e) {
@@ -42,6 +43,7 @@ function init() {
         updateWindow();
     });
     updateWindow();
+    $.fn.toStation(0);
 }
 
 function updateWindow() {
@@ -209,9 +211,13 @@ $.fn.toStation = function(n) {
     if (n == station) return;
     $.each(jsonData.station, function(i) {
         $("#stMapNum" + i).removeClass("mapNumOn");
+        $("#stMap" + i).children("td").children(".mapText").removeClass("mapTextOn");
+        $("#stMap" + i).removeClass("stMapOn");
         // $("#stMap" + i).css("opacity", i < n ? "0.3" : "1");
     });
     $("#stMapNum" + n).addClass("mapNumOn");
+    $("#stMap" + n).children("td").children(".mapText").addClass("mapTextOn");
+    $("#stMap" + n).addClass("stMapOn");
     updateSlide(n);
     station = n;
     // $(window).scrollTop(0);
