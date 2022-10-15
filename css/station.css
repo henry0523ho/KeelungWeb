@@ -216,6 +216,10 @@ tr:hover .mapText {
     text-align: center;
 }
 
+.pageCont .stText:first-child {
+    font-size: 30px;
+}
+
 .slideNav {
     height: 3.75vh;
     width: 100%;
@@ -359,6 +363,9 @@ tr:hover .mapText {
         width: 100%;
         height: 50%;
     }
+    .pageCont .stText:first-child {
+        font-size: initial;
+    }
     #mainTitle {
         font-size: 3vh;
         width: 6vh;
@@ -370,5 +377,8 @@ tr:hover .mapText {
     }
     .slideWin {
         height: calc(100% - 5.5vh);
+    }
+    .stImg {
+        max-width: 75%;
     }
 }
