@@ -2,90 +2,22 @@
     --map-color: rgb(238, 96, 2);
 }
 
-.container-all {
-    display: flex;
-    align-items: stretch
+.navbar-brand img {
+    height: 1.25em;
+    width: auto;
 }
 
-
-/* #sidebar {
-    width: 250px;
-    height: 100vh;
-    background-color: pink;
-    color: purple;
-    transition: 1s ease;
-} */
-
-#sidebar.active {
-    width: 50px;
-    /* margin-left: -200px; */
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    padding: 48px 0 0;
+    box-shadow: inset -1px 0 0 rgb(0 0 0 / 10%);
 }
 
-#sidebar.active th {
-    display: none;
-    /* width: 0px; */
-}
-
-.container-right {
-    background-color: white;
-    width: 100%;
-    height: 100vh;
-    text-align: center;
-    padding: 30px;
-}
-
-.collapse-btn {
-    position: relative;
-    /* top: 1%; */
-    /* left: 200px; */
-    /* position: absolute; */
-    border: none;
-    height: 40px;
-    width: 40px;
-    border-radius: 50%;
-    box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, .3);
-    left: 100%;
-    /* top: 2rem; */
-    transform: translateX(-50%);
-    cursor: pointer;
-}
-
-
-/* #sidebar p {
-    text-align: center;
-    font-size: 30px;
-    padding: 10px;
-} */
-
-#sidebar ul li a {
-    padding: 10px;
-    font-size: 20px;
-    display: block;
-    text-decoration: none;
-}
-
-.i {
-    float: right;
-}
-
-#sidebar table td {
-    height: 50px;
-    width: 50px;
-    text-align: center;
-}
-
-#sidebar table th h1 {
-    width: 200px;
-    margin-top: 5px;
-    margin-bottom: 0px;
-}
-
-#sidebar table th p {
-    font-size: 20px;
-}
-
-#sidebar table td .stNum {
-    display: inline-block;
+.stNum {
     width: 30px;
     height: 30px;
     border: 3px solid var(--map-color);
@@ -94,15 +26,43 @@
     text-align: center;
     font-weight: 900;
     padding-top: 3px;
+    margin-bottom: 5px;
     background-color: white;
     line-height: 1;
     font-size: 18px;
+    color: black;
+    float: left;
+    transform: translateX(0px);
 }
 
-#sidebar tr {
+.stPath {
+    background-color: var(--map-color);
+    width: 8px;
+    height: 100%;
+    transform: translateX(20px);
+}
+
+.nav-flex {
+    display: flex;
+    flex-direction: row;
+    align-content: flex-start;
+    justify-content: flex-start;
+    align-items: stretch;
+    padding-top: 0px;
+    padding-bottom: 0px;
+}
+
+li a {
     border-radius: 10px;
 }
 
-#sidebar tr:hover {
-    background-color: red;
+li a.active {
+    background-color: purple;
+    color: white;
+    font-weight: 900;
+}
+
+li a:hover {
+    background-color: rgb(255, 124, 255);
+    font-weight: 900;
 }
