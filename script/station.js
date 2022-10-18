@@ -47,15 +47,15 @@ function init() {
 }
 
 function updateWindow() {
-    $('nav').attr("style", "");
-    $('main').attr("style", "");
+    //$('nav').attr("style", "");
+    //$('main').attr("style", "");
     $('.slideInfo').attr("style", "");
 
     if ($(window).width() <= 600) {
         console.log("cellphone");
-        navState = false;
+        //navState = false;
     } else {
-        navState = true;
+        //navState = true;
     }
     updateSD();
 }
@@ -230,6 +230,7 @@ $.fn.toStation = function(n) {
         $.fn.hideNav();
         navState = false;
     }
+    $.fn.toSlide(0);
 };
 
 

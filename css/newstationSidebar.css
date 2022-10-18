@@ -1,0 +1,108 @@
+:root {
+    --map-color: rgb(238, 96, 2);
+}
+
+.container-all {
+    display: flex;
+    align-items: stretch
+}
+
+
+/* #sidebar {
+    width: 250px;
+    height: 100vh;
+    background-color: pink;
+    color: purple;
+    transition: 1s ease;
+} */
+
+#sidebar.active {
+    width: 50px;
+    /* margin-left: -200px; */
+}
+
+#sidebar.active th {
+    display: none;
+    /* width: 0px; */
+}
+
+.container-right {
+    background-color: white;
+    width: 100%;
+    height: 100vh;
+    text-align: center;
+    padding: 30px;
+}
+
+.collapse-btn {
+    position: relative;
+    /* top: 1%; */
+    /* left: 200px; */
+    /* position: absolute; */
+    border: none;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    box-shadow: 0px 1px 4px 1px rgba(0, 0, 0, .3);
+    left: 100%;
+    /* top: 2rem; */
+    transform: translateX(-50%);
+    cursor: pointer;
+}
+
+
+/* #sidebar p {
+    text-align: center;
+    font-size: 30px;
+    padding: 10px;
+} */
+
+#sidebar ul li a {
+    padding: 10px;
+    font-size: 20px;
+    display: block;
+    text-decoration: none;
+}
+
+.i {
+    float: right;
+}
+
+#sidebar table td {
+    height: 50px;
+    width: 50px;
+    text-align: center;
+}
+
+#sidebar table th h1 {
+    width: 200px;
+    margin-top: 5px;
+    margin-bottom: 0px;
+}
+
+#sidebar table th p {
+    font-size: 20px;
+}
+
+#sidebar table td .stNum {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+    border: 3px solid var(--map-color);
+    border-radius: 15px;
+    vertical-align: middle;
+    text-align: center;
+    font-weight: 900;
+    padding-top: 3px;
+    background-color: white;
+    line-height: 1;
+    font-size: 18px;
+}
+
+#sidebar tr {
+    border-radius: 10px;
+}
+
+#sidebar tr:hover {
+    background-color: red;
+}

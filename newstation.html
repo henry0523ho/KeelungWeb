@@ -8,7 +8,7 @@
 
     <title>title</title>
 
-    <link rel="stylesheet" href="css/newstation.css">
+    <link rel="stylesheet" href="css/newstationSidebar.css">
 
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <script src="script/newstation.js"></script>
@@ -19,16 +19,80 @@
 
 <body>
     <div class="container-all">
-
-        <div class="container-left">
+        <div class="container-left d-flex flex-column flex-shrink-0 p-3 text-bg-dark">
             <nav id="sidebar">
-                <button type="button" id="collapse" class="btn btn-info collapse-btn"><i class="fa-solid fa-music"></i></button>
+                <table border="0">
+                    <tr>
+                        <td>
+                            <image height="30px" src="src/logo.png"></image>
+                        </td>
+                        <th>
+                            <h1>文化路徑</h1>
+                        </th>
+                    </tr>
+                </table>
+
+                <button type="button" id="collapse" class="collapse-btn"><i class="fa-solid fa-bars"></i></button>
+                <table>
+                    <tr>
+                        <td>
+                            <image height="30px" src="src/logo.png"></image>
+                        </td>
+                        <th>
+                            <h1>正濱漁港</h1>
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="stNum">1</div>
+                        </td>
+                        <th>
+                            <p>煙仔魚會社</p>
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="stNum">2</div>
+                        </td>
+                        <th>
+                            <p>一二三四五六七八九一二三四五六七八九一二三四五六七八九</p>
+                        </th>
+                    </tr>
+                </table>
+                <ul class="nav nav-pills flex-column mb-auto">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link active" aria-current="page">
+                            <i class="fa-solid fa-music"></i>Home
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link text-white">
+                            <i class="fa-solid fa-music"></i>Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link text-white">
+                            <i class="fa-solid fa-music"></i>Orders
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link text-white">
+                            <i class="fa-solid fa-music"></i>Products
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link text-white">
+                            <i class="fa-solid fa-music"></i>Customers
+                        </a>
+                    </li>
+                </ul>
+
                 <ul class="list-unstyled">
                     <p>
                         aaaaaaaaaaaaa
                     </p>
                     <li>
-                        <a href="#">home <i class="i fa-regular fa-square"><i class="i fa-duotone fa-0"></i><i class="i fa-duotone fa-0"></i></i></a>
+                        <a href="#">homehomehomehomehomehomehomehome <i class="i fa-regular fa-square"><i class="i fa-duotone fa-0"></i><i class="i fa-duotone fa-0"></i></i></a>
                     </li>
                     <li>
                         <a href="#">home <i class="i fa-solid fa-music"></i></a>

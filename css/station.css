@@ -218,6 +218,7 @@ tr:hover .mapText {
 
 .pageCont .stText:first-child {
     font-size: 30px;
+    text-align: justify;
 }
 
 .slideNav {
