@@ -38,7 +38,7 @@
 .stPath {
     background-color: var(--map-color);
     width: 8px;
-    height: 100%;
+    height: 150%;
     transform: translateX(20px);
 }
 
@@ -54,15 +54,39 @@
 
 li a {
     border-radius: 10px;
+    color: black;
 }
 
 li a.active {
-    background-color: purple;
+    background-color: rgb(255, 102, 0);
     color: white;
     font-weight: 900;
 }
 
 li a:hover {
-    background-color: rgb(255, 124, 255);
+    background-color: rgb(255, 207, 175);
     font-weight: 900;
+    color: white;
+}
+
+
+/* .nav-item {
+    padding-bottom: 5%;
+} */
+
+.stMapName {
+    color: black;
+}
+
+.hide {}
+
+.stTitle {
+    color: black;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.active .stMapName,
+.active .stTitle {
+    color: white;
 }

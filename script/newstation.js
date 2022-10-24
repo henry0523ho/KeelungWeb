@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    for (let i = 1; i <= 12; ++i) {
+    for (let i = 0; i <= 12; ++i) {
         $("#navBtn" + i).children("a").click(function() {
             toStation(i);
         });
@@ -11,15 +11,15 @@ $(document).ready(function() {
 });
 
 function toStation(idx) {
-    for (let i = 1; i <= 12; ++i) {
+    for (let i = 0; i <= 12; ++i) {
         $("#navBtn" + i).children("a").removeClass("active");
     }
     for (let i = 0; i <= 12; ++i) {
         $("#main" + i).addClass("d-none");
     }
-    if (idx != 0) {
-        $("#navBtn" + idx).children("a").addClass("active");
-    }
+
+    $("#navBtn" + idx).children("a").addClass("active");
+
     $("#main" + idx).removeClass("d-none");
     $("#sidebarMenu").removeClass("show");
 }
